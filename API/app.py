@@ -4,9 +4,9 @@ from PRIVATE import KEYS
 from pymongo import MongoClient
 import uuid
 
+
 app = Flask(__name__)
 main_url = 'http://127.0.0.1:5000/'
-
 
 
 def auth():
@@ -72,7 +72,7 @@ def getBMI(weight, height):
 @app.route('/signup', methods=['GET'])
 def signup():
     """Signup 
-    sample: http://127.0.0.1:5000/signup?usr="email"&pss="password"
+    Example: http://127.0.0.1:5000/signup?usr="email"&pss="password"
     Returns:
         UID: Returns Unique ID
     """
@@ -101,7 +101,7 @@ def signup():
 @app.route('/login', methods=['GET'])
 def login():
     """Login
-    sample: http://127.0.0.1:5000/login?usr="email"&pss="password"
+    Example: http://127.0.0.1:5000/login?usr="email"&pss="password"
 
     Returns:
         UserID: Unique User ID for further Operations
@@ -126,9 +126,49 @@ def login():
 
 @app.route('/add/<userId>', methods=['GET'])
 def addData(userId):
-    print(userId)
+    """Add Physical data to user
 
-    return
+    Example: http://127.0.0.1:5000/add/83fe4a99-bc0f-422f-b8fb-c4b98dff7076?gender=1&age=33&smokes=0
+                                       |___________________________________||______| |_____||______|
+                                                User ID                      gender    age   smokes? ... and so on
+    Args:
+        userId (str): Unique User ID
+
+    Returns:
+        String: 'ok' which means details added
+    """
+    try:
+        isMale = request.args.get('gender', 0)
+        age = request.args.get('age', 0)
+        smokes = request.args.get('smokes', 0)
+        nuSmokes = request.args.get('numbSmokes', 0)
+        heartRate = request.args.get('heartRate', 0)
+        height = request.args.get('height', 0.0)
+        weight = request.args.get('weight', 0.0)
+        bmi = 0
+        if height != 0 or weight != 0:
+            bmi = weight/(height*height)
+        cluster, _, collection = auth()
+        collection.update_one({'_id':userId},
+            {'$set':
+                {'health':
+                    {'isMale': int(isMale), 
+                    'age': int(age), 
+                    'smokes': int(smokes), 
+                    'numbSmokes': int(nuSmokes),
+                    'heartRate': int(heartRate), 
+                    'height': float(height), 
+                    'weight': float(weight), 
+                    'BMI': bmi
+                    }
+                }
+            }
+        )
+        cluster.close()
+        return 'ok'
+    except Exception as e:
+        print(e)
+        return throwError(str(e))
 
 
 if __name__ == '__main__':

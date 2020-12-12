@@ -70,23 +70,34 @@ def getBMI(weight, height):
 
 
 @app.route('/signup', methods=['GET'])
-@app.route('/signup/', methods=['GET'])
 def signup():
+    """Signup 
+    sample: http://127.0.0.1:5000/signup?usr="email"&pss="password"
+    Returns:
+        UID: Returns Unique ID
+    """
     try:
         email =  request.args.get('usr', None)
         password =  request.args.get('pss', None)
-        cluster, db, collection = auth()
+        cluster, _, collection = auth()
         _id = genID()
-        post = {'_id':_id, 'email': str(email), 'paswrd': str(password)}
-        collection.insert_one(post)
+        idExists = collection.find({'_id': _id})
+        for _ in idExists:
+            _id = genID()
+        emailExists = collection.find({'email': str(email)})
+        Flag = True
+        for _ in emailExists:
+            Flag = False
+        if Flag:
+            post = {'_id':_id, 'email': str(email), 'paswrd': str(password)}
+            collection.insert_one(post)
         cluster.close()
-        return 'ok'
+        return jsonify({'ID': _id})
     except Exception as e:
         print(e)
-        return throwError(e)
+        return throwError(str(e))
     
 
-@app.route('/login/', methods=['GET'])
 @app.route('/login', methods=['GET'])
 def login():
     """Login
@@ -96,9 +107,18 @@ def login():
         UserID: Unique User ID for further Operations
     """
     try:
-        username =  request.args.get('usr', None)
+        email =  request.args.get('usr', None)
         password =  request.args.get('pss', None)
-        return 'ok'
+        cluster, _, collection = auth()
+        credExists  = collection.find({'email': str(email), 'paswrd': str(password)})
+        login = False
+        for profiles in credExists:
+            if profiles['email'] == str(email) and profiles['paswrd'] == str(password):
+                login = True
+                return profiles['_id']
+        cluster.close()
+        if not login:
+            raise Exception('User not Found')
     except Exception as e:
         print(e)
         return throwError("Username or password invalid")

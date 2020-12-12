@@ -1,20 +1,20 @@
+import os
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 import tensorflow as tf
 from tensorflow.keras.models import model_from_json
+import warnings
+warnings.filterwarnings("ignore")
+import os
+PATH = os.path.dirname(os.path.abspath(__file__))
+print(PATH)
 
 def load_model():
-    with open('model_data/model.json', 'r') as json_file:
+    with open(PATH+'/model_data/model.json', 'r') as json_file:
         model = model_from_json(json_file.read())
-    model.load_weights("model_data/model.h5")
-    #model._make_predict_function()
+    model.load_weights(PATH+'/model_data/model.h5')
     return model
 
-def get_vals(male, age, currentSmoker, cigsPerDay, BMI, heartRate):
-    print("Loading")
+def get_vals(vals):
     model = load_model()
-    vals = [[male, age, currentSmoker, cigsPerDay, BMI, heartRate]]
-    print('Print')
-    op = model.predict(vals)
-    return op
-
-
-print(get_vals(1, 39, 0, 0, 26.97, 80.0))
+    op = model.predict([vals])
+    return op[0][0]

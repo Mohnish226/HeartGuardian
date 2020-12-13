@@ -1,3 +1,4 @@
+
 # HeartGuardian - Team 2
 
 ![logo](smallogo.png)
@@ -5,17 +6,15 @@
 ## Table Of Contents
 
 1. [Purpose](#Purpose)
-2. [How To Set Up](#How-To-Set-Up)
-3. [Framework And Technical details](#Framework-And-Technical-details)
-4. [Functionality](#Functionality)
-5. [Target Audience](#Target-Audience)
-6. [Future Roadmap](#Future-Roadmap)
+2. [Framework And Technical details](#Framework-And-Technical-details)
+3. [Functionality](#Functionality)
+4. [Target Audience](#Target-Audience)
+5. [Future Roadmap](#Future-Roadmap)
+6. [App Previews](#App-Previews)
 
 ## Purpose
 
 The purpose of this project is to develop an application that can monitor user's heart rate in real-time and send alarm notification to user's friends/parents. It can also give user come advices on diet to prevent heart diseases by tracking user's daily diet intake.
-
-## How To Set Up
 
 ## Framework And Technical details
 
@@ -51,3 +50,10 @@ This application is designed for those with heart disease or have a possible hea
 2. Add functionality to receive diet-based advice
 3. Add functionality for comparison of users’ heart health
 4. Add functionality to share diet plans
+
+## App Previews
+![Push Notification Preview](https://github.com/steven-lm/HeartGuardian/blob/main/previews/pushnotification.JPG)
+
+![Home Preview](https://github.com/steven-lm/HeartGuardian/blob/main/previews/home.JPG)
+
+![Diet Preview](https://github.com/steven-lm/HeartGuardian/blob/main/previews/diet.JPG)

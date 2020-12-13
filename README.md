@@ -1,4 +1,3 @@
-
 # HeartGuardian - Team 2 
 ![](https://img.shields.io/static/v1?label=Microsoft%20Imagine%20Cup%202020&message=Team%202&color=success?style=flat-square&logo=microsoft)
 
@@ -21,7 +20,7 @@ The purpose of this project is to develop an application that can monitor user's
 
 ### Backend
 
-We used flask to to be the server of our backend to interact with frontend. We used logestic regression to train the model and saved the model in `LR_Model.pdl` for later usage. For each heart rate data we recieved, together with some basic physical data of user, we can predict whether the user have heart disease using the model stated above. We also implemented a database using pymongo to store all the user's data and diet history.
+We used flask to to be the server of our backend to interact with frontend. We used Sequential Model to train the model and saved the model for later usage. For each heart rate data we recieved, together with some basic physical data of user, we can predict whether the user have heart disease using the model stated above. We use mongoDB as a database to store all the user's data and diet history and Guardian Relations.
 
 ### Frontend
 
@@ -32,6 +31,10 @@ We used React Native and Nativebase to design and implement the frontend. The in
 ### Send Alarm
 
 Based on the blood pressure data collected, the app will predict whether the user have heart condition, and if so, the app will send a notification to the user and guardians that the user has set up earlier.
+
+### Add and Edit User's Medical details
+
+As some health parameters change, the user can change their medical details to stay updated with their heart health details.
 
 ### Collect User's Dietary
 
@@ -51,6 +54,7 @@ This application is designed for those with heart disease or have a possible hea
 2. Add functionality to receive diet-based advice
 3. Add functionality for comparison of users’ heart health
 4. Add functionality to share diet plans
+5. Help users call medical professionals via the app
 
 ## App Previews
 #### Push Notification Preview

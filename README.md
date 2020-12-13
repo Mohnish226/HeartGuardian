@@ -1,5 +1,6 @@
 
-# HeartGuardian - Team 2
+# HeartGuardian - Team 2 
+![](https://img.shields.io/static/v1?label=Microsoft%20Imagine%20Cup%202020&message=Team%202&color=success?style=flat-square&logo=microsoft)
 
 ![logo](smallogo.png)
 
@@ -52,8 +53,11 @@ This application is designed for those with heart disease or have a possible hea
 4. Add functionality to share diet plans
 
 ## App Previews
+#### Push Notification Preview
 ![Push Notification Preview](https://github.com/steven-lm/HeartGuardian/blob/main/previews/pushnotification.JPG)
 
+#### Home Preview
 ![Home Preview](https://github.com/steven-lm/HeartGuardian/blob/main/previews/home.JPG)
 
+#### Diet Preview
 ![Diet Preview](https://github.com/steven-lm/HeartGuardian/blob/main/previews/diet.JPG)

@@ -39,7 +39,8 @@ export default function ({ navigation }) {
 				style={{
 					flex: 1,
 					alignItems: 'center',
-					justifyContent: 'center',
+					justifyContent: 'space-between',
+					padding: 30,
 				}}
 			>
 				{/* This text using ubuntu font */}
@@ -48,10 +49,10 @@ export default function ({ navigation }) {
             <CardItem>
 				<View style={styles.dietCard}>
                 <Text>
-					Toast
+					Jane
                 </Text>
 				<Text2 style={styles.dietRight}>
-					Breakfast
+					Mum
                 </Text2>
 				</View>
             </CardItem>
@@ -61,28 +62,31 @@ export default function ({ navigation }) {
             <CardItem>
 				<View style={styles.dietCard}>
                 <Text>
-					Yoghurt
+					Dylan
                 </Text>
 				<Text2 style={styles.dietRight}>
-					Snack
+					Dad
                 </Text2>
 				</View>
             </CardItem>
           	</Card>
 
-			  <Card style={styles.card}>
-            <CardItem>
-				<View style={styles.dietCard}>
-                <Text>
-					Salmon
-                </Text>
-				<Text2 style={styles.dietRight}>
-					Dinner
-                </Text2>
-				</View>
-            </CardItem>
-          	</Card>
-			  
+			  <TouchableOpacity
+					onPress={() => {
+						navigation.navigate('SecondScreen');
+					}}
+					style={{
+						backgroundColor: Colors.primary,
+						padding: 10,
+						paddingHorizontal: 20,
+						marginTop: 10,
+						borderRadius: 10,
+					}}
+				>
+					<Text style={{ color: 'white' }} bold>
+						Edit guardians
+					</Text>
+				</TouchableOpacity>
 			  </View>
 			</View>
 		</Layout>
